@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.Routing;
 namespace NetSampleArch.Ports.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [ApiVersion("1", Deprecated = false)]
+    [Route("api/{version:apiversion}/persons/")]
+    [Produces("application/json")]
     public class PersonController : ControllerBase
     {
         private readonly LinkGenerator _linkGenerator;
