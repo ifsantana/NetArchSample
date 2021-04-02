@@ -12,3 +12,30 @@ docker run -it -e ACCEPT_EULA=Y -e SA_PASSWORD=Your_password123 -e MSSQL_PID=Dev
 
 cd ./docker
 docker-compose up -d
+
+# To list kafka connector plugins
+
+HTTP GET (Browser) - http://{host}:8083/connector-plugins
+
+## To configure CDC for dbo.Person
+
+HTTP POST (Using HTTP Client - Postman) - http://{host}:8083/connectors
+
+Request Body:
+
+{
+    "name": "sqlserver-person-connector1",
+    "config": 
+    {
+        "connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
+        "database.hostname": "192.168.0.131",
+        "database.port": "1433",
+        "database.user": "sa",
+        "database.password": "Your_password123",
+        "database.dbname": "CDC_COMMAND_DB",
+        "database.server.name": "dbserver1",
+        "table.whitelist": "dbo.Person",
+        "database.history.kafka.bootstrap.servers": "192.168.0.131:9092",
+        "database.history.kafka.topic": "dbhistory.person"
+    }
+}
