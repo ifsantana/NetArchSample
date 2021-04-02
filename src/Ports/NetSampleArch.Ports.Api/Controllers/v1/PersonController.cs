@@ -26,5 +26,29 @@ namespace NetSampleArch.Ports.Api.Controllers
         {
             return Ok();
         }
+
+        [HttpPost]
+        public IActionResult Post()
+        {
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IActionResult Delete()
+        {
+            return Ok();
+        }
+
+        [HttpPut]
+        public IActionResult Put()
+        {
+            return Ok();
+        }
+
+        [HttpPatch]
+        public IActionResult Patch()
+        {
+            return Ok();
+        }
     }
 }
