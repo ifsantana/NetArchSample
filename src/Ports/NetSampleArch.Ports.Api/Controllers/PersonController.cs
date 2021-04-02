@@ -12,31 +12,19 @@ namespace NetSampleArch.Ports.Api.Controllers
     [Route("[controller]")]
     public class PersonController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly LinkGenerator _linkGenerator;
         private readonly ILogger<PersonController> _logger;
 
-        public WeatherForecastController(ILogger<PersonController> logger, LinkGenerator linkGenerator)
+        public PersonController(ILogger<PersonController> logger, LinkGenerator linkGenerator)
         {
             _linkGenerator = linkGenerator;
             _logger = logger;
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public IActionResult Get()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return Ok();
         }
     }
 }
