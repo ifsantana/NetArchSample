@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace NetSampleArch.Infra.CrossCutting.IoC
 {
@@ -6,7 +8,7 @@ namespace NetSampleArch.Infra.CrossCutting.IoC
     {
         public static void Inject(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddMediatR(typeof(Startup));
+            //services.AddMediatR(typeof(Startup));
         }
     }
 }

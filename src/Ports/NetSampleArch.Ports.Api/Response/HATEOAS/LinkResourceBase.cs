@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace NetSampleArch.Ports.Api.Response.HATEOAS
 {
     public class LinkResourceBase
