@@ -17,7 +17,7 @@ namespace NetSampleArch.Ports.Consumers.Consumers
         protected IBus Bus { get; }
         public Type Type => typeof(T);
 
-        protected BaseKafkaConsumer(ILogger logger, IBus bus,Configuration config)
+        protected BaseKafkaConsumer(ILogger logger, IBus bus, Configuration config)
         {
             Logger = logger;
             Bus = bus;
