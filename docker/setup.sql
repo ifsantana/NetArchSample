@@ -9,7 +9,12 @@ CREATE TABLE Person (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
     Address VARCHAR(200) NOT NULL,
-    Phone VARCHAR(11)
+    Phone VARCHAR(11),
+    CreatedBy VARCHAR(100) NOT NULL,
+    UpdateddBy VARCHAR(100),
+    CreatedAt DateTime NOT NULL,
+    UpdatedAt DateTime,
+    RowVersion VARCHAR(100)
 )
 
 -- Enable CDC
