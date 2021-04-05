@@ -1,10 +1,10 @@
 # NetArchSample
 
-## Build SQL Server DB Container
+## Build Command Store (SQL Server) Container
 
 docker build -t flaubert165/italo-db-demo .
 
-## Run DB Container
+## Run Command Store (SQL Server) Container
 
 docker run -it -e ACCEPT_EULA=Y -e SA_PASSWORD=Your_password123 -e MSSQL_PID=Developer -p 1433:1433 -e MSSQL_AGENT_ENABLED=true -d flaubert165/italo-db-demo
 
