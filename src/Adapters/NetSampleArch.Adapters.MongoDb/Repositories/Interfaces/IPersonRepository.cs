@@ -7,5 +7,6 @@ namespace NetSampleArch.Adapters.MongoDb.Repositories.Interfaces
     public interface IPersonRepository
     {
          Task<List<Person>> GetAll();
+         Task<Person> Create(Person person);
     }
 }
