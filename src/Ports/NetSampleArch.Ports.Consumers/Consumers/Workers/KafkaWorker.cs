@@ -1,5 +1,4 @@
 ﻿
-using Clear.Safekeeping.Ports.Consumer.Workers;
 using Confluent.Kafka;
 using Microsoft.Extensions.DependencyInjection;
 using NetSampleArch.Infra.CrossCutting.Bus.Interfaces;
