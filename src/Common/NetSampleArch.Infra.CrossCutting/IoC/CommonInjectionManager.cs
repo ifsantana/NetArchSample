@@ -11,7 +11,7 @@ using ConfigurationBuilder = NetSampleArch.Infra.CrossCutting.Configuration.Conf
 
 namespace NetSampleArch.Infra.CrossCutting.IoC
 {
-    public static class CommonBootstraper
+    public static class CommonInjectionManager
     {
         private static string ELK_APPLICATION_PROPERTY_NAME = "NetArchSample";
 

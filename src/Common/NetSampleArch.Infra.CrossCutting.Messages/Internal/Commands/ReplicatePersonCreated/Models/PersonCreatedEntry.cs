@@ -14,7 +14,7 @@ namespace NetSampleArch.Infra.CrossCutting.Messages.Internal.Commands.ReplicateP
         public string Address { get; set; }
         public string Phone { get; set; }
         public PersonCreatedEntry(string executionUser, string createdBy, DateTime createdAt,
-        string updatedBy, DateTime updatedAt, TimeSpan rowVersion, string name, string address, string phone) 
+        string updatedBy, DateTime? updatedAt, TimeSpan rowVersion, string name, string address, string phone) 
             : base(executionUser)
         {
             CreatedBy = createdBy;

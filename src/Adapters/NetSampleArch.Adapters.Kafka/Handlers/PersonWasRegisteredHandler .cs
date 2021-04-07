@@ -1,6 +1,5 @@
 using System.Threading;
 using System.Threading.Tasks;
-using NetSampleArch.Adapters.Kafka.Handlers.Interfaces;
 using NetSampleArch.Infra.CrossCutting.Bus.Interfaces.Handlers;
 using NetSampleArch.Infra.CrossCutting.Configuration;
 using NetSampleArch.Infra.CrossCutting.Messages.Internal.Events.PersonWasRegistered.Interfaces;
@@ -12,19 +11,16 @@ namespace NetSampleArch.Adapters.Kafka.Handlers
         : BaseKafkaHandler<IPersonWasRegisteredEvent>, IEventHandler<IPersonWasRegisteredEvent>
     {
         public PersonWasRegisteredHandler(ILogger logger, Configuration config) 
-            : base(logger, config)
-        {
-
-        }
+            : base(logger, config) { }
 
         public async override Task Handle(IPersonWasRegisteredEvent notification, CancellationToken cancellationToken)
         {
-            await KafkaPublisher.SendEventAsync(
-                topicName: "",
-                key: "",
-                @event: null,
-                cancellationToken
-            ).ConfigureAwait(false);
+            // await KafkaPublisher.SendEventAsync(
+            //     topicName: "",
+            //     key: "",
+            //     @event: null,
+            //     cancellationToken
+            // ).ConfigureAwait(false);
         }
     }
 }

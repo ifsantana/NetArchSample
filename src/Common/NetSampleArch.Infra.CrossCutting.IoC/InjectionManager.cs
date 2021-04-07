@@ -4,10 +4,12 @@ using System.Reflection;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NetSampleArch.Adapters.Kafka.IoC;
 using NetSampleArch.Adapters.SQLServer.IoC;
 using NetSampleArch.Adapters.SQLServer.Repositories;
 using NetSampleArch.Adapters.SQLServer.Repositories.Interfaces;
 using NetSampleArch.Adapters.SQLServer.UnitOfWork.Interfaces;
+using NetSampleArch.Application.IoC;
 using NetSampleArch.Infra.CrossCutting.Bus.Handlers.Events.DomainNotifications.Interfaces;
 using NetSampleArch.Infra.CrossCutting.UnitOfWork;
 
@@ -26,20 +28,20 @@ namespace NetSampleArch.Infra.CrossCutting.IoC
 
         private static void ConfigureCommomLayer(IServiceCollection services, IConfiguration configuration)
         {
-            //CommomBootstrapper.ConfigureCrossCuttingLayer(services, configuration);
+            CommonInjectionManager.Inject(services, configuration);
             //CrossCutting.Messages.External.V1.IoC.CrossCuttingExternalMessagesBootstrapper.ConfigureCrossCuttingExternalMessages(services);
         }
 
         private static void ConfigureApplicationCoreLayer(IServiceCollection services)
         {
-            //ApplicationBootstrapper.ConfigureApplicationLayer(services);
+            ApplicationInjectionManager.Inject(services);
             //DomainBootstrapper.ConfigureDomainLayer(services);
         }
 
         private static void ConfigureAdaptersLayer(IServiceCollection services, IConfiguration config)
         {
             AdapterSqlServerInjectionManager.Inject(services);
-            AdapterKafkaBootstrapper.ConfigureAdapterKafkaLayer(services);
+            AdapterKafkaInjectionManager.Inject(services);
 
             services.AddScoped<IUnitOfWork>(serviceProvider => serviceProvider.GetService<ISqlServerUnitOfWork>());
             services.AddScoped<IPersonSqlServerRepository, PersonSqlServerRepository>();
@@ -51,9 +53,9 @@ namespace NetSampleArch.Infra.CrossCutting.IoC
                 // Commom
                 typeof(IDomainNotificationEventHandler).Assembly,
                 // Kafka Layer
-                typeof(IAssetKafkaRepository).Assembly,
+                //typeof(IAssetKafkaRepository).Assembly,
 
-                typeof(IPersonSqlServerRepository)
+                //typeof(IPersonSqlServerRepository)
             };
 
             services.AddMediatR(config =>
