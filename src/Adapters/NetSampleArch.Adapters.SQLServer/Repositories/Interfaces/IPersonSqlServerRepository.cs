@@ -3,7 +3,7 @@ using NetSampleArch.Adapters.SQLServer.Models;
 
 namespace NetSampleArch.Adapters.SQLServer.Repositories.Interfaces
 {
-    public interface IPersonRepository
+    public interface IPersonSqlServerRepository
     {
         Task<Person> AddAsync(Person person);
     }

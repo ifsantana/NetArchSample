@@ -4,9 +4,9 @@ using NetSampleArch.Adapters.SQLServer.Repositories.Interfaces;
 
 namespace NetSampleArch.Adapters.SQLServer.Repositories
 {
-    public class PersonRepository : IPersonRepository
+    public class PersonSqlServerRepository : IPersonSqlServerRepository
     {
-        public PersonRepository()
+        public PersonSqlServerRepository()
         {
             
         }

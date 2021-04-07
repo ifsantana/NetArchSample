@@ -4,16 +4,19 @@ using System.Threading;
 using System.Threading.Tasks;
 using NetSampleArch.Adapters.SQLServer.DataContexts.Interfaces;
 using NetSampleArch.Adapters.SQLServer.UnitOfWork.Interfaces;
+using Serilog;
 
 namespace NetSampleArch.Adapters.SQLServer.UnitOfWork
 {
     public class SqlServerUnitOfWork
         : ISqlServerUnitOfWork
     {
+        private readonly ILogger _logger;
         private readonly IDbContext _dbContext;
 
-        public SqlServerUnitOfWork(IDbContext dbContext)
+        public SqlServerUnitOfWork(ILogger logger, IDbContext dbContext)
         {
+            _logger = logger;
             _dbContext = dbContext;
         }
 
@@ -31,6 +34,7 @@ namespace NetSampleArch.Adapters.SQLServer.UnitOfWork
             }
             catch (Exception ex)
             {
+                _logger.Error(ex.Message);
                 throw;
             }
         }

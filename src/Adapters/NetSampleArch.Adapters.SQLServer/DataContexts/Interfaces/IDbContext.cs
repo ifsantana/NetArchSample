@@ -5,6 +5,6 @@ namespace NetSampleArch.Adapters.SQLServer.DataContexts.Interfaces
 {
     public interface IDbContext
     {
-         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }
