@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\NetSampleArch.Infra.CrossCutting\NetSampleArch.Infra.CrossCutting.csproj" />
     <ProjectReference Include="..\..\Adapters/NetSampleArch.Adapters.SQLServer\NetSampleArch.Adapters.SQLServer.csproj" />
     <ProjectReference Include="..\..\Core\NetSampleArch.Application\NetSampleArch.Application.csproj" />
     <ProjectReference Include="..\..\Adapters\NetSampleArch.Adapters.Kafka\NetSampleArch.Adapters.Kafka.csproj" />
