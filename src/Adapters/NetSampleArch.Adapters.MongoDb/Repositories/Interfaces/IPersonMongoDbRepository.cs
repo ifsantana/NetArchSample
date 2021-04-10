@@ -4,7 +4,7 @@ using NetSampleArch.Adapters.MongoDb.Models;
 
 namespace NetSampleArch.Adapters.MongoDb.Repositories.Interfaces
 {
-    public interface IPersonRepository
+    public interface IPersonMongoDbRepository
     {
          Task<List<Person>> GetAll();
          Task<Person> Create(Person person);

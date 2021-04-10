@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace NetSampleArch.Adapters.SQLServer.DataContexts.Interfaces
+namespace NetSampleArch.Adapters.EFCore.DataContexts.Interfaces
 {
     public interface IDbContext
     {

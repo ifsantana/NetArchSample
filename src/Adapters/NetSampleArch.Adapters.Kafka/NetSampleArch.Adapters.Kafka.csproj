@@ -5,6 +5,7 @@
   </PropertyGroup>
   
   <ItemGroup>
+  <ProjectReference Include="..\..\..\NetSampleArch.Adapters.EFCore\NetSampleArch.Adapters.EFCore.csproj" />
   <ProjectReference Include="..\..\Core\NetSampleArch.Domain\NetSampleArch.Domain.csproj" />
     <ProjectReference Include="..\..\Common\NetSampleArch.Infra.CrossCutting\NetSampleArch.Infra.CrossCutting.csproj" />
     <ProjectReference Include="..\..\Common\NetSampleArch.Infra.CrossCutting.Messages\NetSampleArch.Infra.CrossCutting.Messages.csproj" />

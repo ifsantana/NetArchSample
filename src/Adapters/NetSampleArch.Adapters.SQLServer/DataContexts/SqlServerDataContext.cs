@@ -1,14 +1,20 @@
-using System.Threading;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using NetSampleArch.Adapters.SQLServer.DataContexts.Interfaces;
+using NetSampleArch.Infra.CrossCutting.Configuration;
 
 namespace NetSampleArch.Adapters.SQLServer.DataContexts
 {
-    public class SqlServerDataContext : IDbContext
+    public class SqlServerDataContext : DefaultContext, IDbContext
     {
-        public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+        public SqlServerDataContext(Configuration configuration)
+            : base(configuration)
         {
-            throw new System.NotImplementedException();
+
+        }
+
+        protected override void OnConfiguringInternal(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(Configuration.SqlConfiguration.ConnectionString); ;
         }
     }
 }

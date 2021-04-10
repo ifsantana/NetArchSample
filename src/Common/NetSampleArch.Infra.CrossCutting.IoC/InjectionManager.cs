@@ -10,6 +10,7 @@ using NetSampleArch.Adapters.SQLServer.Repositories;
 using NetSampleArch.Adapters.SQLServer.Repositories.Interfaces;
 using NetSampleArch.Adapters.SQLServer.UnitOfWork.Interfaces;
 using NetSampleArch.Application.IoC;
+using NetSampleArch.Domain.Repositories.Interfaces;
 using NetSampleArch.Infra.CrossCutting.Bus.Handlers.Events.DomainNotifications.Interfaces;
 using NetSampleArch.Infra.CrossCutting.UnitOfWork;
 
@@ -44,7 +45,7 @@ namespace NetSampleArch.Infra.CrossCutting.IoC
             AdapterKafkaInjectionManager.Inject(services);
 
             services.AddScoped<IUnitOfWork>(serviceProvider => serviceProvider.GetService<ISqlServerUnitOfWork>());
-            services.AddScoped<IPersonSqlServerRepository, PersonSqlServerRepository>();
+            services.AddScoped<IPersonCommandRepository>(servicePRovider => servicePRovider.GetService<IPersonSqlServerRepository>());
         }
 
         private static void ConfigureMessageHandlerLayer(IServiceCollection services, IConfiguration config)

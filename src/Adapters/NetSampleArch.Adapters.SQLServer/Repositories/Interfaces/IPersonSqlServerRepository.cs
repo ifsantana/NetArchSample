@@ -1,10 +1,9 @@
-using System.Threading.Tasks;
-using NetSampleArch.Adapters.SQLServer.Models;
+using NetSampleArch.Domain.Entities.Person;
+using NetSampleArch.Domain.Repositories.Interfaces;
 
 namespace NetSampleArch.Adapters.SQLServer.Repositories.Interfaces
 {
-    public interface IPersonSqlServerRepository
+    public interface IPersonSqlServerRepository : ISqlServerRepository<Person>, IPersonCommandRepository
     {
-        Task<Person> AddAsync(Person person);
     }
 }

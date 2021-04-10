@@ -1,7 +1,6 @@
-﻿using NetSampleArch.Domain.Entities;
-using NetSampleArch.Domain.Entities.Interfaces;
+﻿using NetSampleArch.Domain.Entities.Interfaces;
 
-namespace NetSampleArch.Domain
+namespace NetSampleArch.Domain.Entities.Person
 {
     public abstract class Person : BaseEntity, IAggregateRoot
     {

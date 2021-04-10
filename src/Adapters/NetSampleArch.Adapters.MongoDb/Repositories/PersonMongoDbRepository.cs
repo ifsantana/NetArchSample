@@ -8,12 +8,12 @@ using NetSampleArch.Infra.CrossCutting.Configuration;
 
 namespace NetSampleArch.Adapters.MongoDb.Repositories
 {
-    public class PersonRepository : IPersonRepository
+    public class PersonMongoDbRepository : IPersonMongoDbRepository
     {
         private readonly IMongoCollection<Person> _persons;
         private readonly IMongoDbDataContext _mongoDbContext;
 
-        public PersonRepository(IMongoDbDataContext _mongoDbContext, Configuration configuration)
+        public PersonMongoDbRepository(IMongoDbDataContext _mongoDbContext, Configuration configuration)
         {
             _persons = _mongoDbContext.GetDatabase().GetCollection<Person>(nameof(Person));
         }

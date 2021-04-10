@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
-namespace NetSampleArch.Adapters.SQLServer.Models
+namespace NetSampleArch.Adapters.EFCore.Models
 {
     public abstract class BaseModel
         : INotifyPropertyChanged
