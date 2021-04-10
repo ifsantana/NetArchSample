@@ -12,11 +12,7 @@ namespace NetSampleArch.Application.UseCases
         protected IBus Bus { get; }
         protected IUnitOfWork UnitOfWork { get; }
 
-        protected BaseUseCase(
-            ILogger logger,
-            IBus bus,
-            IUnitOfWork unitOfWork
-        )
+        protected BaseUseCase(ILogger logger, IBus bus, IUnitOfWork unitOfWork)
         {
             Logger = logger;
             Bus = bus;

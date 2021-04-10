@@ -9,6 +9,8 @@ namespace NetSampleArch.Domain.Entities.Person.Entries
         public string Address { get; protected set; }
         public string Phone { get; protected set; }
 
+        public PersonEntry() { };
+
         public PersonEntry(string name, string address, string phone)
         {
             Name = name;
@@ -23,7 +25,7 @@ namespace NetSampleArch.Domain.Entities.Person.Entries
             Phone = phone;
         }
 
-        protected virtual void RegisterNewPersonEntry(string name, string address, string phone, string createdBy)
+        public virtual void RegisterNewPersonEntry(string name, string address, string phone, string createdBy)
         {
             GenerateNewId();
             GenerateNewRowVersion();

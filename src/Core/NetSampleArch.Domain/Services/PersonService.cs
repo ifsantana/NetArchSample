@@ -18,9 +18,16 @@ namespace NetSampleArch.Domain.Services
         {
             _personCommandRepository = personCommandRepository;
         }
-        public Task<(bool success, Person)> AddPersonToCommandDb(PersonEntry personEntry, CancellationToken cancellationToken)
+
+        public async Task<(bool success, Person)> AddPersonToCommandDb(PersonEntry personEntry, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            var person = new Person();
+
+            person.UpdateFromAssetEntry(personEntry);
+
+            var result = await _personCommandRepository.AddPersonAsync(person, cancellationToken).ConfigureAwait(false);
+
+            return (result, person);
         }
     }
 }
