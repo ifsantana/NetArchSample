@@ -1,18 +1,19 @@
 ﻿
-using System.Collections.Generic;
-using System.Reflection;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetSampleArch.Adapters.Kafka.IoC;
+using NetSampleArch.Adapters.MongoDb.IoC;
 using NetSampleArch.Adapters.SQLServer.IoC;
-using NetSampleArch.Adapters.SQLServer.Repositories;
 using NetSampleArch.Adapters.SQLServer.Repositories.Interfaces;
 using NetSampleArch.Adapters.SQLServer.UnitOfWork.Interfaces;
 using NetSampleArch.Application.IoC;
+using NetSampleArch.Domain.IoC;
 using NetSampleArch.Domain.Repositories.Interfaces;
 using NetSampleArch.Infra.CrossCutting.Bus.Handlers.Events.DomainNotifications.Interfaces;
 using NetSampleArch.Infra.CrossCutting.UnitOfWork;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace NetSampleArch.Infra.CrossCutting.IoC
 {
@@ -36,13 +37,14 @@ namespace NetSampleArch.Infra.CrossCutting.IoC
         private static void ConfigureApplicationCoreLayer(IServiceCollection services)
         {
             ApplicationInjectionManager.Inject(services);
-            //DomainBootstrapper.ConfigureDomainLayer(services);
+            DomainInjectionManager.Inject(services);
         }
 
         private static void ConfigureAdaptersLayer(IServiceCollection services, IConfiguration config)
         {
             AdapterSqlServerInjectionManager.Inject(services);
             AdapterKafkaInjectionManager.Inject(services);
+            MongoDbInjectionManager.Inject(services);
 
             services.AddScoped<IUnitOfWork>(serviceProvider => serviceProvider.GetService<ISqlServerUnitOfWork>());
             services.AddScoped<IPersonCommandRepository>(servicePRovider => servicePRovider.GetService<IPersonSqlServerRepository>());
@@ -56,7 +58,7 @@ namespace NetSampleArch.Infra.CrossCutting.IoC
                 // Kafka Layer
                 //typeof(IAssetKafkaRepository).Assembly,
 
-                //typeof(IPersonSqlServerRepository)
+                typeof(IPersonSqlServerRepository).Assembly
             };
 
             services.AddMediatR(config =>

@@ -3,7 +3,6 @@ using FluentValidation.Results;
 using NetSampleArch.Infra.CrossCutting.Bus.Events;
 using NetSampleArch.Infra.CrossCutting.Bus.Interfaces;
 using Serilog;
-
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
