@@ -1,6 +1,6 @@
 using System;
 
-namespace NetSampleArch.Infra.CrossCutting.Messages.Internal.Commands.AddPerson.Models
+namespace NetSampleArch.Infra.CrossCutting.Messages.Internal.Commands.ReplicatePersonCreated.Models
 {
     public class AddPersonCommandModel : BaseCommand
     {
