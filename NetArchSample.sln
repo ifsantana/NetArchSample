@@ -29,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker\Dockerfile = docker\Dockerfile
 		docker\entrypoint.sh = docker\entrypoint.sh
 		docker\import-data.sh = docker\import-data.sh
+		README.md = README.md
 		docker\setup.sql = docker\setup.sql
 	EndProjectSection
 EndProject

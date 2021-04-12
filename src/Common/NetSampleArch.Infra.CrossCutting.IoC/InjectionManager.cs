@@ -20,7 +20,12 @@ namespace NetSampleArch.Infra.CrossCutting.IoC
     public static class InjectionManager
     {
         public static void Inject(this IServiceCollection services, IConfiguration configuration)
-        {
+        { 
+
+            var config = configuration.Get<NetSampleArch.Infra.CrossCutting.Configuration.Configuration>();
+
+            services.AddSingleton(config);
+
             ConfigureCommomLayer(services, configuration);
             ConfigureApplicationCoreLayer(services);
             ConfigureAdaptersLayer(services, configuration);
@@ -43,8 +48,8 @@ namespace NetSampleArch.Infra.CrossCutting.IoC
         private static void ConfigureAdaptersLayer(IServiceCollection services, IConfiguration config)
         {
             AdapterSqlServerInjectionManager.Inject(services);
-            AdapterKafkaInjectionManager.Inject(services);
-            MongoDbInjectionManager.Inject(services);
+            //AdapterKafkaInjectionManager.Inject(services);
+            //MongoDbInjectionManager.Inject(services);
 
             services.AddScoped<IUnitOfWork>(serviceProvider => serviceProvider.GetService<ISqlServerUnitOfWork>());
             services.AddScoped<IPersonCommandRepository>(servicePRovider => servicePRovider.GetService<IPersonSqlServerRepository>());

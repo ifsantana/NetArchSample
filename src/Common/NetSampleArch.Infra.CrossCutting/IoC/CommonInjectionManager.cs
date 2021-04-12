@@ -6,7 +6,7 @@ using NetSampleArch.Infra.CrossCutting.Bus.Interfaces;
 using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
-using Serilog.Sinks.Network;
+using Serilog.Formatting.Compact;
 using ConfigurationBuilder = NetSampleArch.Infra.CrossCutting.Configuration.ConfigurationBuilder;
 
 namespace NetSampleArch.Infra.CrossCutting.IoC
@@ -33,11 +33,12 @@ namespace NetSampleArch.Infra.CrossCutting.IoC
                       .Enrich.WithMachineName()
                       .Enrich.WithProcessId()
                       .Enrich.WithThreadId()
+                      .Enrich.FromLogContext()
                       .Enrich.WithProperty(ELK_APPLICATION_PROPERTY_NAME, config.ElasticConfiguration.ApplicationName)
                       .Enrich.WithExceptionDetails()
                       .MinimumLevel.Is(LogEventLevel.Debug)
-                      .WriteTo.Console()
-                      .WriteTo.UDPSink(config.ElasticConfiguration.Uri, config.ElasticConfiguration.Port)
+                      .WriteTo.Console(new RenderedCompactJsonFormatter())
+                      .WriteTo.Seq($"http://{config.ElasticConfiguration.Uri}:{config.ElasticConfiguration.Port}/")
                       .CreateLogger();
 
             services.AddSingleton(Log.Logger);

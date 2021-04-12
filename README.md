@@ -44,3 +44,10 @@ Request Body:
 
 mongodb://root:rootpassword@localhost:27017
 
+## Serilog (Seq)
+
+docker pull datalust/seq  
+docker run --name seq -d --restart unless-stopped -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest  
+
+
+

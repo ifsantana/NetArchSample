@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Common\NetSampleArch.Infra.CrossCutting.IoC\NetSampleArch.Infra.CrossCutting.IoC.csproj" />
     <ProjectReference Include="..\..\Common\NetSampleArch.Infra.CrossCutting\NetSampleArch.Infra.CrossCutting.csproj" />
+    <ProjectReference Include="..\NetSampleArch.Ports.Consumers\NetSampleArch.Ports.Consumers.csproj" />
   </ItemGroup>
 
   	<ItemGroup>

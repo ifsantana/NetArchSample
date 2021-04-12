@@ -1,10 +1,10 @@
+using NetSampleArch.Adapters.EFCore.DataContexts.Interfaces;
+using NetSampleArch.Adapters.SQLServer.UnitOfWork.Interfaces;
+using Serilog;
 using System;
 using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
-using NetSampleArch.Adapters.SQLServer.DataContexts.Interfaces;
-using NetSampleArch.Adapters.SQLServer.UnitOfWork.Interfaces;
-using Serilog;
 
 namespace NetSampleArch.Adapters.SQLServer.UnitOfWork
 {

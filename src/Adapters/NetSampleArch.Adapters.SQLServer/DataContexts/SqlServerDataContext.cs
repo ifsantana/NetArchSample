@@ -1,6 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using NetSampleArch.Adapters.SQLServer.DataContexts.Interfaces;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+using NetSampleArch.Adapters.EFCore.DataContexts;
+using NetSampleArch.Adapters.EFCore.DataContexts.Interfaces;
 using NetSampleArch.Infra.CrossCutting.Configuration;
+using ConfigurationBuilder = NetSampleArch.Infra.CrossCutting.Configuration.ConfigurationBuilder;
 
 namespace NetSampleArch.Adapters.SQLServer.DataContexts
 {
@@ -14,7 +18,18 @@ namespace NetSampleArch.Adapters.SQLServer.DataContexts
 
         protected override void OnConfiguringInternal(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(Configuration.SqlConfiguration.ConnectionString); ;
+            optionsBuilder.UseSqlServer(Configuration.SqlConfiguration.ConnectionString);
+        }
+
+        public class SqlServerDataContextDesignTimeDbContextFactory :
+            IDesignTimeDbContextFactory<SqlServerDataContext>
+        {
+            public SqlServerDataContext CreateDbContext(string[] args)
+            {
+                return new SqlServerDataContext(
+                   ConfigurationBuilder.GetConfigurationBuilder(null).Build().Get<Configuration>()
+                );
+            }
         }
     }
 }

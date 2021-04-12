@@ -1,16 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using NetSampleArch.Infra.CrossCutting.Configuration;
+using NetSampleArch.Infra.CrossCutting.IoC;
+using NetSampleArch.Ports.Consumers.Consumers.Commands;
+using NetSampleArch.Ports.Consumers.Interfaces.Commands;
+using NetSampleArch.Ports.Consumers.Workers;
+using Serilog;
+using System;
 
 namespace NetSampleArch.Ports.Api
 {
@@ -26,7 +26,8 @@ namespace NetSampleArch.Ports.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            ConfigureKafkaConsumersAndWorker(services);
+            services.Inject(Configuration);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -54,6 +55,24 @@ namespace NetSampleArch.Ports.Api
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void ConfigureKafkaConsumersAndWorker(IServiceCollection services)
+        {
+            services.AddScoped<IReplicateCreatedPersonCommandConsumer, ReplicateCreatedPersonCommandConsumer>();
+
+            services.AddHostedService(serviceProvider =>
+            {
+                return new KafkaWorker(
+                    serviceProvider.GetService<ILogger>(),
+                    serviceProvider,
+                    serviceProvider.GetService<Configuration>(),
+                    new KafkaWorkerConfig(new (string ConsumerGroupId, string TopicName, Type Type)[] {
+                        ("Person", "dbserver1.dbo.Person", typeof(IReplicateCreatedPersonCommandConsumer)),
+                    })
+                );
+            });
+
         }
     }
 }
