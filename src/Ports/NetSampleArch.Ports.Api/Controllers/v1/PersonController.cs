@@ -1,6 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Routing;
+using NetSampleArch.Ports.Api.Controllers.v1;
+using NetSampleArch.Infra.CrossCutting.Bus.Interfaces;
+using NetSampleArch.Infra.CrossCutting.Bus.Handlers.Events.DomainNotifications.Interfaces;
+using Serilog;
+using NetSampleArch.Ports.Api.Response;
+using System.Net;
+using NetSampleArch.Infra.CrossCutting.Messages.Internal.Commands.AddPerson.Models;
+using System.Threading;
+using NetSampleArch.Ports.Api.Payloads;
+using System.Threading.Tasks;
+using NetSampleArch.Infra.CrossCutting.Messages.Internal.Commands.AddPerson;
 
 namespace NetSampleArch.Ports.Api.Controllers
 {
@@ -8,15 +18,14 @@ namespace NetSampleArch.Ports.Api.Controllers
     [ApiVersion("1", Deprecated = false)]
     [Route("api/{version:apiversion}/persons/")]
     [Produces("application/json")]
-    public class PersonController : ControllerBase
+    public class PersonController : V1BaseController
     {
         private readonly LinkGenerator _linkGenerator;
-        private readonly ILogger<PersonController> _logger;
 
-        public PersonController(ILogger<PersonController> logger, LinkGenerator linkGenerator)
+        public PersonController(ILogger logger, IBus bus, IRaisedDomainNotifications raisedDomainNotifications)
+            : base(logger, bus, raisedDomainNotifications)
         {
-            _linkGenerator = linkGenerator;
-            _logger = logger;
+
         }
 
         [HttpGet]
@@ -26,9 +35,21 @@ namespace NetSampleArch.Ports.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post()
+        [ProducesResponseType(typeof(BaseResponse<bool>), (int)HttpStatusCode.Created)]
+        public async Task<IActionResult> Post(AddPersonPayload payload, CancellationToken cancellationToken)
         {
-            return Ok();
+            var resultCommand = await Bus.SendCommandAsync<AddPersonCommand, bool>(command: new AddPersonCommand(
+                input: new AddPersonCommandModel(
+                    executionUser: payload.ExecutionUser,
+                    createdBy: payload.ExecutionUser,
+                    name: payload.Name,
+                    address: payload.Address,
+                    phone: payload.Phone
+                )),
+                cancellationToken: cancellationToken
+            ).ConfigureAwait(false);
+
+            return Ok(CreateResponseObject(resultCommand));
         }
 
         [HttpDelete]

@@ -25,11 +25,7 @@ namespace NetSampleArch.Ports.Consumers.Consumers.Commands
                     new Infra.CrossCutting.Messages.Internal.Commands.ReplicatePersonCreated.Models.PersonCreatedEntry
                     (
                         executionUser: nameof(ReplicateCreatedPersonCommandConsumer),
-                        createdAt: command.Entry.CreatedAt,
                         createdBy: command.Entry.CreatedBy,
-                        updatedAt: command.Entry.UpdatedAt,
-                        updatedBy: command.Entry.UpdatedBy,
-                        rowVersion: command.Entry.RowVersion,
                         name: command.Entry.Name,
                         address: command.Entry.Address,
                         phone: command.Entry.Phone

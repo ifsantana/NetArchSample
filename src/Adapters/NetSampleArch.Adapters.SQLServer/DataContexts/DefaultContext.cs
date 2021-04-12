@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NetSampleArch.Adapters.SQLServer.DataContexts.Interfaces;
-using NetSampleArch.Domain;
 using NetSampleArch.Infra.CrossCutting.Configuration;
 using System.Linq;
 
@@ -29,8 +28,6 @@ namespace NetSampleArch.Adapters.SQLServer.DataContexts
             OnConfiguringInternal(optionsBuilder);
         }
         protected abstract void OnConfiguringInternal(DbContextOptionsBuilder optionsBuilder);
-
-        public DbSet<Person> Person { get; set; }
 
     }
 }

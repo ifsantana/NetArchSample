@@ -25,10 +25,6 @@ namespace NetSampleArch.Application.Handlers.Commands
                 new UseCases.AddPerson.Models.AddPersonUseCaseModel(
                     executionUser: request.Input.ExecutionUser,
                     createdBy: request.Input.CreatedBy,
-                    createdAt: request.Input.CreatedAt,
-                    updatedBy: request.Input.UpdatedBy,
-                    updatedAt: request.Input.UpdatedAt,
-                    rowVersion: request.Input.RowVersion,
                     name: request.Input.Name,
                     address: request.Input.Address,
                     phone: request.Input.Phone

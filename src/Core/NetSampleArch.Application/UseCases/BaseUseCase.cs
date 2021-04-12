@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using NetSampleArch.Infra.CrossCutting.Bus.Events;
 using NetSampleArch.Infra.CrossCutting.Bus.Interfaces;

@@ -5,6 +5,6 @@ namespace NetSampleArch.Infra.CrossCutting.Messages.Internal.Commands.Interfaces
 {
     public interface IReplicatePersonCreatedCommand : ICommand<bool>
     {
-         AddPersonCommandModel Entry {get;}
+        PersonCreatedEntry Entry {get;}
     }
 }

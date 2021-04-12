@@ -5,9 +5,9 @@ namespace NetSampleArch.Infra.CrossCutting.Messages.Internal.Commands.ReplicateP
 {
     public class ReplicatePersonCreatedCommand : IReplicatePersonCreatedCommand
     {
-        public AddPersonCommandModel Entry {get;}
+        public PersonCreatedEntry Entry {get;}
 
-        public ReplicatePersonCreatedCommand(AddPersonCommandModel entry)
+        public ReplicatePersonCreatedCommand(PersonCreatedEntry entry)
         {
             Entry  =  entry;
         }

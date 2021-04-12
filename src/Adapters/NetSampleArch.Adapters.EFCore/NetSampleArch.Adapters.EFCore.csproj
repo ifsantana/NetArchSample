@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Common\NetSampleArch.Infra.CrossCutting\NetSampleArch.Infra.CrossCutting.csproj" />
-    <ProjectReference Include="..\src\Core\NetSampleArch.Domain\NetSampleArch.Domain.csproj" />
+    <ProjectReference Include="..\..\Common\NetSampleArch.Infra.CrossCutting\NetSampleArch.Infra.CrossCutting.csproj" />
+    <ProjectReference Include="..\..\Core\NetSampleArch.Domain\NetSampleArch.Domain.csproj" />
   </ItemGroup>
 
 </Project>

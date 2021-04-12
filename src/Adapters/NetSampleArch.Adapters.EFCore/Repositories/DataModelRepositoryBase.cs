@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using NetSampleArch.Adapters.EFCore.DataContexts.Interfaces;
 using NetSampleArch.Adapters.EFCore.Models;
 using NetSampleArch.Adapters.EFCore.Repositories.Interfaces;
@@ -24,6 +25,21 @@ namespace NetSampleArch.Adapters.EFCore.Repositories
 			_dbContext = dbContext;
 			DbSet = _dbContext.Set<TDataModel>();
 		}
+
+        private static void SetModifiedProperties(EntityEntry<TDataModel> entry, TDataModel dataModel)
+        {
+            var changedProperties = dataModel.GetPropertyChangedCollection().Where(q => q != nameof(BaseModel.Id));
+
+            var properties = changedProperties as string[] ?? changedProperties.ToArray();
+
+            if (!properties.Any())
+                return;
+
+            foreach (var property in entry.Properties)
+                property.IsModified =
+                    properties.Contains(
+                        property.Metadata.PropertyInfo.Name);
+        }
 
         public async Task<TDataModel> AddAsync(TDataModel dataModel, CancellationToken cancellationToken)
         {

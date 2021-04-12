@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NetSampleArch.Adapters.SQLServer.DataContexts.Interfaces;
+using NetSampleArch.Adapters.EFCore.DataContexts.Interfaces;
 using NetSampleArch.Infra.CrossCutting.Configuration;
 using System.Linq;
 
