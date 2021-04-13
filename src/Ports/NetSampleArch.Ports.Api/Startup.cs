@@ -16,12 +16,12 @@ namespace NetSampleArch.Ports.Api
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -29,6 +29,7 @@ namespace NetSampleArch.Ports.Api
             ConfigureKafkaConsumersAndWorker(services);
             services.Inject(Configuration);
             services.AddControllers();
+            services.AddHealthChecks();
             services.AddApiVersioning(
                 options =>
                 {
@@ -38,7 +39,7 @@ namespace NetSampleArch.Ports.Api
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "NetSampleArch.Ports.Api", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "NetSampleArch", Version = "v1" });
             });
         }
 
@@ -49,7 +50,7 @@ namespace NetSampleArch.Ports.Api
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NetSampleArch.Ports.Api v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NetSampleArch v1"));
             }
 
             app.UseHttpsRedirection();
@@ -61,6 +62,7 @@ namespace NetSampleArch.Ports.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health");
             });
         }
 

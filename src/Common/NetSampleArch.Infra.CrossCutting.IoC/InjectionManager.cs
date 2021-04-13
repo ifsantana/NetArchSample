@@ -1,10 +1,11 @@
-﻿
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NetSampleArch.Adapters.EFCore.IoC;
 using NetSampleArch.Adapters.SQLServer.IoC;
 using NetSampleArch.Adapters.SQLServer.Repositories.Interfaces;
 using NetSampleArch.Adapters.SQLServer.UnitOfWork.Interfaces;
+using NetSampleArch.Application.Handlers.Commands.Interfaces;
 using NetSampleArch.Application.IoC;
 using NetSampleArch.Domain.IoC;
 using NetSampleArch.Domain.Repositories.Interfaces;
@@ -27,8 +28,7 @@ namespace NetSampleArch.Infra.CrossCutting.IoC
             ConfigureCommomLayer(services, configuration);
             ConfigureApplicationCoreLayer(services);
             ConfigureAdaptersLayer(services, configuration);
-            ConfigureMessageHandlerLayer(services, configuration);
-            
+            ConfigureMessageHandlerLayer(services);
         }
 
         private static void ConfigureCommomLayer(IServiceCollection services, IConfiguration configuration)
@@ -45,6 +45,7 @@ namespace NetSampleArch.Infra.CrossCutting.IoC
 
         private static void ConfigureAdaptersLayer(IServiceCollection services, IConfiguration config)
         {
+            EFCoreInjectionManager.Inject(services);
             AdapterSqlServerInjectionManager.Inject(services);
             //AdapterKafkaInjectionManager.Inject(services);
             //MongoDbInjectionManager.Inject(services);
@@ -53,11 +54,15 @@ namespace NetSampleArch.Infra.CrossCutting.IoC
             services.AddScoped<IPersonCommandRepository>(servicePRovider => servicePRovider.GetService<IPersonSqlServerRepository>());
         }
 
-        private static void ConfigureMessageHandlerLayer(IServiceCollection services, IConfiguration config)
+        private static void ConfigureMessageHandlerLayer(IServiceCollection services)
         {
             var assemblyCollection = new List<Assembly> {
                 // Commom
                 typeof(IDomainNotificationEventHandler).Assembly,
+                
+                // Application Layer
+                typeof(IAddPersonCommandHandler).Assembly,
+
                 // Kafka Layer
                 //typeof(IAssetKafkaRepository).Assembly,
 
