@@ -1,12 +1,12 @@
 -- 1- Database creation
 CREATE DATABASE CDC_COMMAND_DB;
 
-Use CDC_COMMAND_DB
+Use CDC_COMMAND_DB;
 GO
 
 -- 2- Table creation
 CREATE TABLE Person (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
     Address VARCHAR(200) NOT NULL,
     Phone VARCHAR(11),
@@ -14,7 +14,7 @@ CREATE TABLE Person (
     UpdateddBy VARCHAR(100),
     CreatedAt DateTime NOT NULL,
     UpdatedAt DateTime,
-    RowVersion VARCHAR(100)
+    RowVersion BIGINT
 )
 
 -- Enable CDC

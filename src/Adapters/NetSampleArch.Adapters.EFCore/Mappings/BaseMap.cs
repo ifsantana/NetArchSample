@@ -36,6 +36,7 @@ namespace NetSampleArch.Adapters.EFCore.Mappings
 
             builder.Property(q => q.RowVersion)
                 .HasColumnName("RowVersion")
+                .HasConversion<long>()
                 .IsRequired();
 
             ConfigureMap(builder);

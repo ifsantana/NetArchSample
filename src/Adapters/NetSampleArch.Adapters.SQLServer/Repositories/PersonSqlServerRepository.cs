@@ -26,14 +26,14 @@ namespace NetSampleArch.Adapters.SQLServer.Repositories
 
         public async override Task<Person> AddInternalAsync(Person entity, CancellationToken cancellationToken)
         {
-            await _personModelRepository.AddAsync(_personModelFactory.Create(entity), cancellationToken).ConfigureAwait(false);
+            await _personModelRepository.AddPersonAsync(_personModelFactory.Create(entity), cancellationToken).ConfigureAwait(false);
 
             return entity;
         }
 
         public async Task<bool> AddPersonAsync(Person person, CancellationToken cancellationToken)
         {
-            await _personModelRepository.AddAsync(_personModelFactory.Create(person), cancellationToken).ConfigureAwait(false);
+            await _personModelRepository.AddPersonAsync(_personModelFactory.Create(person), cancellationToken).ConfigureAwait(false);
 
             return await Task.FromResult(true);
         }

@@ -6,7 +6,7 @@ namespace NetSampleArch.Adapters.EFCore.Mappings
 {
     public class PersonModelMap : BaseMap<PersonDataModel>
     {
-        private static string TABLE_NAME = "Person";
+        private static string TABLE_NAME = "dbo.Person";
 
         protected override string GetTableName() => TABLE_NAME;
 

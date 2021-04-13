@@ -26,7 +26,7 @@ namespace NetSampleArch.Adapters.SQLServer.UnitOfWork
             {
                 if (await handleAsync())
                 {
-                    await _dbContext.SaveChangesAsync(cancellationToken);
+                    //await _dbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
                     return true;
                 }
 
