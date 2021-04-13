@@ -2,8 +2,6 @@
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NetSampleArch.Adapters.Kafka.IoC;
-using NetSampleArch.Adapters.MongoDb.IoC;
 using NetSampleArch.Adapters.SQLServer.IoC;
 using NetSampleArch.Adapters.SQLServer.Repositories.Interfaces;
 using NetSampleArch.Adapters.SQLServer.UnitOfWork.Interfaces;

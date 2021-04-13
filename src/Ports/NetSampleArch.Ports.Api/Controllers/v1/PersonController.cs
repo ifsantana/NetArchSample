@@ -16,7 +16,7 @@ namespace NetSampleArch.Ports.Api.Controllers
 {
     [ApiController]
     [ApiVersion("1", Deprecated = false)]
-    [Route("api/{version:apiversion}/persons/")]
+    [Route("api/v{version:apiVersion}/persons/")]
     [Produces("application/json")]
     public class PersonController : V1BaseController
     {

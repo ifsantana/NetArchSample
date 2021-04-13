@@ -29,6 +29,13 @@ namespace NetSampleArch.Ports.Api
             ConfigureKafkaConsumersAndWorker(services);
             services.Inject(Configuration);
             services.AddControllers();
+            services.AddApiVersioning(
+                options =>
+                {
+                    options.ReportApiVersions = true;
+                    options.AssumeDefaultVersionWhenUnspecified = true;
+                });
+            services.AddRouting(options => options.LowercaseUrls = true);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "NetSampleArch.Ports.Api", Version = "v1" });
