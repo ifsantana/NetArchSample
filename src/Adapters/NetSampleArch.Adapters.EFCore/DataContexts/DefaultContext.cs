@@ -13,7 +13,6 @@ namespace NetSampleArch.Adapters.EFCore.DataContexts
         protected DefaultContext(Configuration configuration)
         {
             Configuration = configuration;
-            this.Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

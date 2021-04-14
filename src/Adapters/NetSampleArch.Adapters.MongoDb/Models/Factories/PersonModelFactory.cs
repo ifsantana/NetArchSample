@@ -8,7 +8,8 @@ namespace NetSampleArch.Adapters.MongoDb.Models.Factories
         {
             var personModel = Create();
 
-            personModel.Id = parameter.Id.ToString();
+            personModel.Id = new MongoDB.Bson.ObjectId();
+            personModel.CommandModelId = parameter.Id.ToString();
             personModel.CreatedAt = parameter.CreatedAt;
             personModel.CreatedBy = parameter.CreatedBy;
             personModel.UpdatedAt = parameter.UpdatedAt;

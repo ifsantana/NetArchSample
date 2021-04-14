@@ -15,7 +15,6 @@ namespace NetSampleArch.Ports.Consumers.Workers
     public class KafkaWorker : WorkerBase
     {
         private readonly Task[] _kafkaConsumerArray;
-
         private readonly IServiceProvider _serviceProvider;
         private readonly Configuration _config;
         private readonly KafkaWorkerConfig _kafkaWorkerConfig;
@@ -41,7 +40,7 @@ namespace NetSampleArch.Ports.Consumers.Workers
                 _kafkaConsumerArray[i] = Task.Run(async () =>
                 {
                     Logger.Warning($"Initializing Kafka Consumer [TopicName: {kafkaConsumerConfig.TopicName}]");
-                    using var consumer = new ConsumerBuilder<Ignore, string>(new ConsumerConfig
+                    using var consumer = new ConsumerBuilder<string, string>(new ConsumerConfig
                     {
                         GroupId = kafkaConsumerConfig.ConsumerGroupId,
                         BootstrapServers = _config.KafkaConfig.BootstrapServers,

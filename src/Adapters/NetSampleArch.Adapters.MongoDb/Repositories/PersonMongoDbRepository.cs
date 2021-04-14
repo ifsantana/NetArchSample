@@ -4,6 +4,7 @@ using NetSampleArch.Adapters.MongoDb.Models;
 using NetSampleArch.Adapters.MongoDb.Models.Factories.Interfaces;
 using NetSampleArch.Adapters.MongoDb.Repositories.Interfaces;
 using NetSampleArch.Infra.CrossCutting.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace NetSampleArch.Adapters.MongoDb.Repositories
         public PersonMongoDbRepository(IMongoDbDataContext _mongoDbContext, Configuration configuration, IPersonModelFactory personDataModelFactory)
         {
             _personDataModelFactory = personDataModelFactory;
-            _persons = _mongoDbContext.GetDatabase().GetCollection<PersonDataModel>(nameof(PersonDataModel));
+            _persons = _mongoDbContext.GetDatabase().GetCollection<PersonDataModel>("Person");
         }
 
         public async Task<bool> AddPersonAsync(Domain.Entities.Person.Person person, CancellationToken cancellationToken)
@@ -28,7 +29,7 @@ namespace NetSampleArch.Adapters.MongoDb.Repositories
             {
                 await _persons.InsertOneAsync(_personDataModelFactory.Create(person)).ConfigureAwait(false);
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
                 return false;
                 throw;

@@ -8,6 +8,6 @@ namespace NetSampleArch.Ports.Consumers.Interfaces
     public interface IKafkaConsumer
     {
         Type Type { get; }
-        Task MessageReceivedAsync(ConsumeResult<Ignore, string> receivedMessage, CancellationToken cancellationToken);
+        Task MessageReceivedAsync(ConsumeResult<string, string> receivedMessage, CancellationToken cancellationToken);
     }
 }

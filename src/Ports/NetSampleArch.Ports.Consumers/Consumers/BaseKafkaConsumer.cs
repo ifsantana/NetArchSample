@@ -24,6 +24,6 @@ namespace NetSampleArch.Ports.Consumers.Consumers
             KafkaPublisher = new KafkaPublisher(config.KafkaConfig.BootstrapServers);
         }
 
-        public abstract Task MessageReceivedAsync(ConsumeResult<Ignore, string> receivedMessage, CancellationToken cancellationToken);
+        public abstract Task MessageReceivedAsync(ConsumeResult<string, string> receivedMessage, CancellationToken cancellationToken);
     }
 }
