@@ -14,7 +14,7 @@ docker build -t flaubert165/italo-db-demo .
 
 docker run -it -e ACCEPT_EULA=Y -e SA_PASSWORD=Your_password123 -e MSSQL_PID=Developer -p 1439:1433 -e MSSQL_AGENT_ENABLED=true -d flaubert165/italo-db-demo
 
-PS: If after run SQL container the CommandDB has been not created, run script manually that has located in: docker/setup.sql to create the database.
+PS: If after run SQL container the CommandDB has not  been created, run script manually that has located in: docker/setup.sql to create the database.
 
 ## Run MongoDb, Kafka, Zookeper and Kafka Connect
 
