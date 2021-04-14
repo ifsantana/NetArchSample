@@ -44,6 +44,14 @@ Request Body:
 
 mongodb://root:rootpassword@localhost:27017
 
+## Create Mongo Infra
+
+On MongoDb Compass:
+
+Create Database called: CDC_QUERY_DB
+
+On CDC_QUERY_DB database, we will create a collection called: Person
+
 ## Serilog (Seq)
 
 docker pull datalust/seq  
