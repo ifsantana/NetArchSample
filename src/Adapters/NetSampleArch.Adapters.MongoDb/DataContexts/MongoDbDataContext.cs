@@ -12,7 +12,7 @@ namespace NetSampleArch.Adapters.SQLServer.DataContexts
         public MongoDbDataContext(Configuration configuration)
         {
             _mongoClient = new MongoClient(configuration.MongoConfiguration.ConnectionString);
-            _mongoDatabase = _mongoClient.GetDatabase("CDC_QUERY_DB");
+            _mongoDatabase = _mongoClient.GetDatabase(configuration.MongoConfiguration.DatabaseName);
         }
 
         public MongoClient GetClient() 

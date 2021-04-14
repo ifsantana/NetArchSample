@@ -2,6 +2,8 @@
 using NetSampleArch.Adapters.EFCore.DataContexts.Interfaces;
 using NetSampleArch.Adapters.EFCore.Mappings;
 using NetSampleArch.Infra.CrossCutting.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace NetSampleArch.Adapters.EFCore.DataContexts
@@ -35,5 +37,9 @@ namespace NetSampleArch.Adapters.EFCore.DataContexts
             modelBuilder.ApplyConfiguration(new PersonModelMap());
         }
 
+        public IDbConnection GetSqlSession()
+        {
+            return new SqlConnection(Configuration.SqlConfiguration.ConnectionString);
+        }
     }
 }
