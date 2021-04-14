@@ -28,7 +28,7 @@ HTTP GET (Browser) - http://{host}:8083/connector-plugins
 HTTP POST (Using HTTP Client - Postman) - http://{host}:8083/connectors
 
 Request Body:
-
+{
 {
     "name": "sqlserver-person-connector1",
     "config": 
@@ -44,6 +44,7 @@ Request Body:
         "database.history.kafka.bootstrap.servers": "192.168.0.131:9092",
         "database.history.kafka.topic": "dbhistory.person"
     }
+}
 }
 
 ## Connecting with Query/Event Store (MongoDb) with MongoDb Compass
