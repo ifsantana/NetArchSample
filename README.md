@@ -1,6 +1,10 @@
 # NetArchSample
 
-Event Driven Sample Archtecture using DDD, CQRS, Hexagonal / Ports and Adapters Pattern http://wiki.c2.com/?PortsAndAdaptersArchitecture
+Event Driven Sample Archtecture using:
+
+###DDD
+###CQRS - With Debezium to Sync Command Data Model Store DB (Sql Server) and Query Data Model Store DB (MongoDb)
+###Hexagonal / Ports and Adapters Pattern http://wiki.c2.com/?PortsAndAdaptersArchitecture
 
 ## Build Command Store (SQL Server) Container
 
