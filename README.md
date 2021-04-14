@@ -29,11 +29,8 @@ HTTP POST (Using HTTP Client - Postman) - http://{host}:8083/connectors
 
 Request Body:
 
-{
     {
-    
-    }
-    "name": "sqlserver-person-connector1",
+        "name": "sqlserver-person-connector1",
         "config": {
             "connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
             "database.hostname": "192.168.0.131",
@@ -46,7 +43,8 @@ Request Body:
             "database.history.kafka.bootstrap.servers": "192.168.0.131:9092",
             "database.history.kafka.topic": "dbhistory.person"
         }
-}
+    }
+
 
 ## Connecting with Query/Event Store (MongoDb) with MongoDb Compass
 
