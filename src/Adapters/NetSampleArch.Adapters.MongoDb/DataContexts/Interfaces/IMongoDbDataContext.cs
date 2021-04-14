@@ -1,6 +1,6 @@
 using MongoDB.Driver;
 
-namespace NetSampleArch.Adapters.SQLServer.DataContexts.Interfaces
+namespace NetSampleArch.Adapters.MongoDb.DataContexts.Interfaces
 {
     public interface IMongoDbDataContext
     {

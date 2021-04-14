@@ -1,6 +1,6 @@
 namespace NetSampleArch.Adapters.MongoDb.Models
 {
-    public class Person : BaseModel
+    public class PersonDataModel : BaseModel
     {
         public string Name { get; set; }
         public string Address { get; set; }

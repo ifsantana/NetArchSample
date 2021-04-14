@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetSampleArch.Adapters.EFCore.IoC;
+using NetSampleArch.Adapters.MongoDb.IoC;
+using NetSampleArch.Adapters.MongoDb.Repositories.Interfaces;
 using NetSampleArch.Adapters.SQLServer.IoC;
 using NetSampleArch.Adapters.SQLServer.Repositories.Interfaces;
 using NetSampleArch.Adapters.SQLServer.UnitOfWork.Interfaces;
@@ -48,10 +50,12 @@ namespace NetSampleArch.Infra.CrossCutting.IoC
             EFCoreInjectionManager.Inject(services);
             AdapterSqlServerInjectionManager.Inject(services);
             //AdapterKafkaInjectionManager.Inject(services);
-            //MongoDbInjectionManager.Inject(services);
+            MongoDbInjectionManager.Inject(services);
 
             services.AddScoped<IUnitOfWork>(serviceProvider => serviceProvider.GetService<ISqlServerUnitOfWork>());
             services.AddScoped<IPersonCommandRepository>(servicePRovider => servicePRovider.GetService<IPersonSqlServerRepository>());
+
+            services.AddScoped<IPersonQueryRepository>(servicePRovider => servicePRovider.GetService<IPersonMongoDbRepository>());
         }
 
         private static void ConfigureMessageHandlerLayer(IServiceCollection services)

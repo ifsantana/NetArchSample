@@ -8,8 +8,7 @@ using Serilog;
 
 namespace NetSampleArch.Application.Handlers.Commands.Interfaces
 {
-    public class ReplicateCreatedPersonCommandHandler : BaseCommandHandler<ReplicatePersonCreatedCommand, bool>,
-        IReplicateCreatedPersonCommandHandler
+    public class ReplicateCreatedPersonCommandHandler : BaseCommandHandler<ReplicatePersonCreatedCommand, bool>, IReplicateCreatedPersonCommandHandler
     {
         public readonly IReplicatePersonToQuerieDbUseCase _replicatePersonToQuerieDbUseCase;
 
@@ -21,7 +20,16 @@ namespace NetSampleArch.Application.Handlers.Commands.Interfaces
 
         public override async Task<bool> Handle(ReplicatePersonCreatedCommand request, CancellationToken cancellationToken)
         {
-            return await Task.FromResult(true);
+            return await _replicatePersonToQuerieDbUseCase.ExecuteAsync(
+                new UseCases.ReplicatePersonToQuerieDb.Models.AddedPersonUseCaseModel(
+                    executionUser: request.Entry.ExecutionUser,
+                    createdBy: request.Entry.CreatedBy,
+                    name: request.Entry.Name,
+                    address: request.Entry.Address,
+                    phone: request.Entry.Phone
+                ),
+                cancellationToken
+            ).ConfigureAwait(false);
         }
     }
 }

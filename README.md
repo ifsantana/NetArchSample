@@ -6,7 +6,7 @@ docker build -t flaubert165/italo-db-demo .
 
 ## Run Command Store (SQL Server) Container
 
-docker run -it -e ACCEPT_EULA=Y -e SA_PASSWORD=Your_password123 -e MSSQL_PID=Developer -p 1433:1433 -e MSSQL_AGENT_ENABLED=true -d flaubert165/italo-db-demo
+docker run -it -e ACCEPT_EULA=Y -e SA_PASSWORD=Your_password123 -e MSSQL_PID=Developer -p 1439:1433 -e MSSQL_AGENT_ENABLED=true -d flaubert165/italo-db-demo
 
 ## Run MongoDb, Kafka, Zookeper and Kafka Connect
 
@@ -29,7 +29,7 @@ Request Body:
     {
         "connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
         "database.hostname": "192.168.0.131",
-        "database.port": "1433",
+        "database.port": "1439",
         "database.user": "sa",
         "database.password": "Your_password123",
         "database.dbname": "CDC_COMMAND_DB",

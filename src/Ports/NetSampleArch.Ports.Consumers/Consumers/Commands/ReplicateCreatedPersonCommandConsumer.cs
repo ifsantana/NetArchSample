@@ -18,6 +18,7 @@ namespace NetSampleArch.Ports.Consumers.Consumers.Commands
 
         public override async Task MessageReceivedAsync(ConsumeResult<Ignore, string> receivedMessage, CancellationToken cancellationToken)
         {
+            var teste = receivedMessage.Message.Value.DeserializeFromJson<dynamic>();
             var command = receivedMessage.Message.Value.DeserializeFromJson<ReplicatePersonCreatedCommand>();
 
             await Bus.SendCommandAsync<NetSampleArch.Infra.CrossCutting.Messages.Internal.Commands.ReplicatePersonCreated.ReplicatePersonCreatedCommand, bool>(

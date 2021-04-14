@@ -3,6 +3,22 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="appsettings.Development.json" />
+    <None Remove="appsettings.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.12.1" />
     <PackageReference Include="MongoDB.Driver.Core" Version="2.12.1" />
     <PackageReference Include="MongoDB.Bson" Version="2.12.1" />
@@ -10,5 +26,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\NetSampleArch.Infra.CrossCutting\NetSampleArch.Infra.CrossCutting.csproj" />
+    <ProjectReference Include="..\..\Core\NetSampleArch.Domain\NetSampleArch.Domain.csproj" />
   </ItemGroup>
 </Project>
