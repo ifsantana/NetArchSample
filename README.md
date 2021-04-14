@@ -1,5 +1,7 @@
 # NetArchSample
 
+Event Driven Sample Archtecture using DDD, CQRS, Hexagonal / Ports and Adapters Pattern http://wiki.c2.com/?PortsAndAdaptersArchitecture
+
 ## Build Command Store (SQL Server) Container
 
 docker build -t flaubert165/italo-db-demo .
